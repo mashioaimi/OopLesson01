@@ -12,13 +12,36 @@ namespace SalesManagement
         static void Main(string[] args)
         {
             int total = 0; //全体の売り上げ金額集計用
+            int asakusatotal = 0;
+            int marunouchitotal = 0;
+            int yokohamatotal = 0;
             SalesCounter sales = new SalesCounter(ReadSales("Sales.csv"));
             foreach (var item in sales._sales)
             {
-                total += item.Amount;
+                if( item.ShopName.Equals("新宿店"))
+                {
+                    total += item.Amount;
+                }
+                else if(item.ShopName.Equals("浅草店"))
+                {
+                    asakusatotal += item.Amount;
+                }
+                else if(item.ShopName.Equals("丸の内店"))
+                {
+                    marunouchitotal += item.Amount;
+                }
+                else if(item.ShopName.Equals("横浜店"))
+                {
+                    yokohamatotal += item.Amount;
+                }
+
             }
 
-            Console.WriteLine("全体の売り上げ：{0}円", total);
+            Console.WriteLine("新宿店売り上げ：{0}円", total);
+            Console.WriteLine("浅草店売り上げ：{0}円", asakusatotal);
+            Console.WriteLine("丸の内店売り上げ：{0}円", marunouchitotal);
+            Console.WriteLine("横浜店売り上げ：{0}円", yokohamatotal);
+
         }
 
         //売り上げデータを読み込み、Saleオブジェクトのリストを返す
