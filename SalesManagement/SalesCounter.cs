@@ -9,7 +9,7 @@ namespace SalesManagement
     //売り上げ集計クラス
     class SalesCounter
     {
-        private List<Sale> _sales;
+        public List<Sale> _sales;
         //コンストラクタ
         public SalesCounter(List<Sale> sales)
         {
