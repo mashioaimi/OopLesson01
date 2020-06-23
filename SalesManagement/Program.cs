@@ -12,35 +12,35 @@ namespace SalesManagement
         static void Main(string[] args)
         {
             int total = 0; //全体の売り上げ金額集計用
-            int asakusatotal = 0;
-            int marunouchitotal = 0;
-            int yokohamatotal = 0;
+            int mochitotal = 0;
+            int manjutotal = 0;
+            int youkantotal = 0;
             SalesCounter sales = new SalesCounter(ReadSales("Sales.csv"));
             foreach (var item in sales._sales)
             {
-                if( item.ShopName.Equals("新宿店"))
+                if( item.ProductCategory.Equals("カステラ"))
                 {
                     total += item.Amount;
                 }
-                else if(item.ShopName.Equals("浅草店"))
+                else if(item.ProductCategory.Equals("餅菓子"))
                 {
-                    asakusatotal += item.Amount;
+                    mochitotal += item.Amount;
                 }
-                else if(item.ShopName.Equals("丸の内店"))
+                else if(item.ProductCategory.Equals("まんじゅう"))
                 {
-                    marunouchitotal += item.Amount;
+                    manjutotal += item.Amount;
                 }
-                else if(item.ShopName.Equals("横浜店"))
+                else if(item.ProductCategory.Equals("羊羹"))
                 {
-                    yokohamatotal += item.Amount;
+                    youkantotal += item.Amount;
                 }
 
             }
 
-            Console.WriteLine("新宿店売り上げ：{0}円", total);
-            Console.WriteLine("浅草店売り上げ：{0}円", asakusatotal);
-            Console.WriteLine("丸の内店売り上げ：{0}円", marunouchitotal);
-            Console.WriteLine("横浜店売り上げ：{0}円", yokohamatotal);
+            Console.WriteLine("カステラ売り上げ：{0}円", total);
+            Console.WriteLine("餅菓子売り上げ：{0}円", mochitotal);
+            Console.WriteLine("まんじゅう店売り上げ：{0}円", manjutotal);
+            Console.WriteLine("羊羹売り上げ：{0}円", youkantotal);
 
         }
 
