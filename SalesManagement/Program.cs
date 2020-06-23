@@ -11,31 +11,32 @@ namespace SalesManagement
     {
         static void Main(string[] args)
         {
-            int[] totals = new int[4] { 0, 0, 0, 0 };
-            string[] shops = { "新宿店", "浅草店", "丸の内店", "横浜店" };
+            Dictionary<string, int> stores = new Dictionary<string, int>();
 
             SalesCounter sales = new SalesCounter(ReadSales("Sales.csv"));
 
-            //集計
             foreach (var item in sales._sales)
             {
-                for (int i = 0; i < shops.Length; i++)
+                if(stores.ContainsKey(item.ShopName))
                 {
-                    if (item.ShopName.Equals(shops[i]))
-                    {
-                        totals[i] += item.Amount;
-                        break;
-                    }
+                    //キー（店舗名）が存在する場合
+                    stores[item.ShopName] = item.Amount;
+                }
+                else
+                {
+                    //キー（店舗名）が存在しない（連想配列追加）
+                    stores[item.ShopName] = item.Amount;
                 }
             }
 
             //出力
-            for (int i = 0; i < shops.Length; i++)
+            foreach (var item in stores)
             {
-                Console.WriteLine($"{shops[i]}の売上合計：{ totals[i]}");
+                Console.WriteLine("{0}の売上合計：{1}", item.Key, item.Value);
+                //Console.WriteLine("$"{item.key}の売上合計：{item.value})
             }
-        }
 
+      }
             //売り上げデータを読み込み、Saleオブジェクトのリストを返す
             static List<Sale> ReadSales(string filePath)
             {
