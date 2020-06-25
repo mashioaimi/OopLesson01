@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesManagement", "SalesMan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionarySample", "DictionarySample\DictionarySample.csproj", "{576A4529-7635-402C-A5BE-40C530171F8B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressManagement", "AddressManagement\AddressManagement.csproj", "{A9309362-354B-4240-A5AA-DE6664610873}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{576A4529-7635-402C-A5BE-40C530171F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{576A4529-7635-402C-A5BE-40C530171F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{576A4529-7635-402C-A5BE-40C530171F8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9309362-354B-4240-A5AA-DE6664610873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9309362-354B-4240-A5AA-DE6664610873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9309362-354B-4240-A5AA-DE6664610873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9309362-354B-4240-A5AA-DE6664610873}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
