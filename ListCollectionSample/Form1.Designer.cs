@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tbCategory = new System.Windows.Forms.TextBox();
-            this.tbMaker = new System.Windows.Forms.TextBox();
             this.dgvCarData = new System.Windows.Forms.DataGridView();
             this.btAdd = new System.Windows.Forms.Button();
             this.btOpenImage = new System.Windows.Forms.Button();
@@ -41,8 +40,19 @@
             this.btClearImage = new System.Windows.Forms.Button();
             this.ofdOpenImage = new System.Windows.Forms.OpenFileDialog();
             this.btModify = new System.Windows.Forms.Button();
+            this.btDelet = new System.Windows.Forms.Button();
+            this.cbMaker = new System.Windows.Forms.ComboBox();
+            this.tbCategory = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.新規入力ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.終了XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -83,24 +93,10 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "カテゴリ";
             // 
-            // tbCategory
-            // 
-            this.tbCategory.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbCategory.Location = new System.Drawing.Point(124, 219);
-            this.tbCategory.Name = "tbCategory";
-            this.tbCategory.Size = new System.Drawing.Size(243, 31);
-            this.tbCategory.TabIndex = 1;
-            // 
-            // tbMaker
-            // 
-            this.tbMaker.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbMaker.Location = new System.Drawing.Point(124, 131);
-            this.tbMaker.Name = "tbMaker";
-            this.tbMaker.Size = new System.Drawing.Size(243, 31);
-            this.tbMaker.TabIndex = 1;
-            // 
             // dgvCarData
             // 
+            this.dgvCarData.AllowUserToAddRows = false;
+            this.dgvCarData.AllowUserToDeleteRows = false;
             this.dgvCarData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarData.Location = new System.Drawing.Point(16, 256);
             this.dgvCarData.MultiSelect = false;
@@ -108,14 +104,14 @@
             this.dgvCarData.ReadOnly = true;
             this.dgvCarData.RowTemplate.Height = 21;
             this.dgvCarData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCarData.Size = new System.Drawing.Size(628, 186);
+            this.dgvCarData.Size = new System.Drawing.Size(559, 186);
             this.dgvCarData.TabIndex = 2;
             this.dgvCarData.Click += new System.EventHandler(this.dgvCarData_Click);
             // 
             // btAdd
             // 
             this.btAdd.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btAdd.Location = new System.Drawing.Point(580, 151);
+            this.btAdd.Location = new System.Drawing.Point(581, 256);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(97, 47);
             this.btAdd.TabIndex = 3;
@@ -126,7 +122,7 @@
             // btOpenImage
             // 
             this.btOpenImage.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btOpenImage.Location = new System.Drawing.Point(581, 37);
+            this.btOpenImage.Location = new System.Drawing.Point(581, 30);
             this.btOpenImage.Name = "btOpenImage";
             this.btOpenImage.Size = new System.Drawing.Size(97, 51);
             this.btOpenImage.TabIndex = 3;
@@ -146,7 +142,7 @@
             // btClearImage
             // 
             this.btClearImage.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btClearImage.Location = new System.Drawing.Point(581, 94);
+            this.btClearImage.Location = new System.Drawing.Point(582, 107);
             this.btClearImage.Name = "btClearImage";
             this.btClearImage.Size = new System.Drawing.Size(97, 51);
             this.btClearImage.TabIndex = 3;
@@ -161,7 +157,7 @@
             // btModify
             // 
             this.btModify.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btModify.Location = new System.Drawing.Point(581, 204);
+            this.btModify.Location = new System.Drawing.Point(583, 328);
             this.btModify.Name = "btModify";
             this.btModify.Size = new System.Drawing.Size(96, 46);
             this.btModify.TabIndex = 5;
@@ -169,27 +165,107 @@
             this.btModify.UseVisualStyleBackColor = true;
             this.btModify.Click += new System.EventHandler(this.btModify_Click);
             // 
+            // btDelet
+            // 
+            this.btDelet.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btDelet.Location = new System.Drawing.Point(582, 397);
+            this.btDelet.Name = "btDelet";
+            this.btDelet.Size = new System.Drawing.Size(97, 45);
+            this.btDelet.TabIndex = 6;
+            this.btDelet.Text = "削除";
+            this.btDelet.UseVisualStyleBackColor = true;
+            this.btDelet.Click += new System.EventHandler(this.btDelet_Click);
+            // 
+            // cbMaker
+            // 
+            this.cbMaker.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.cbMaker.FormattingEnabled = true;
+            this.cbMaker.Items.AddRange(new object[] {
+            "トヨタ",
+            "日産",
+            "ホンダ"});
+            this.cbMaker.Location = new System.Drawing.Point(124, 128);
+            this.cbMaker.Name = "cbMaker";
+            this.cbMaker.Size = new System.Drawing.Size(243, 32);
+            this.cbMaker.TabIndex = 7;
+            // 
+            // tbCategory
+            // 
+            this.tbCategory.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbCategory.Location = new System.Drawing.Point(124, 219);
+            this.tbCategory.Name = "tbCategory";
+            this.tbCategory.Size = new System.Drawing.Size(243, 31);
+            this.tbCategory.TabIndex = 1;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ファイルFToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(708, 24);
+            this.menuStrip1.TabIndex = 8;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // ファイルFToolStripMenuItem
+            // 
+            this.ファイルFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新規入力ToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.終了XToolStripMenuItem});
+            this.ファイルFToolStripMenuItem.Name = "ファイルFToolStripMenuItem";
+            this.ファイルFToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.ファイルFToolStripMenuItem.Text = "ファイル(&F)";
+            // 
+            // 新規入力ToolStripMenuItem
+            // 
+            this.新規入力ToolStripMenuItem.Name = "新規入力ToolStripMenuItem";
+            this.新規入力ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.新規入力ToolStripMenuItem.Text = "新規入力";
+            this.新規入力ToolStripMenuItem.Click += new System.EventHandler(this.新規入力ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // 終了XToolStripMenuItem
+            // 
+            this.終了XToolStripMenuItem.Name = "終了XToolStripMenuItem";
+            this.終了XToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.終了XToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.終了XToolStripMenuItem.Text = "終了(&X)";
+            this.終了XToolStripMenuItem.Click += new System.EventHandler(this.終了XToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 454);
+            this.Controls.Add(this.cbMaker);
+            this.Controls.Add(this.btDelet);
             this.Controls.Add(this.btModify);
             this.Controls.Add(this.pbImage);
             this.Controls.Add(this.btClearImage);
             this.Controls.Add(this.btOpenImage);
             this.Controls.Add(this.btAdd);
             this.Controls.Add(this.dgvCarData);
-            this.Controls.Add(this.tbMaker);
             this.Controls.Add(this.tbCategory);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "車登録アプリ";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,8 +277,6 @@
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbCategory;
-        private System.Windows.Forms.TextBox tbMaker;
         private System.Windows.Forms.DataGridView dgvCarData;
         private System.Windows.Forms.Button btAdd;
         private System.Windows.Forms.Button btOpenImage;
@@ -210,6 +284,16 @@
         private System.Windows.Forms.Button btClearImage;
         private System.Windows.Forms.OpenFileDialog ofdOpenImage;
         private System.Windows.Forms.Button btModify;
+        private System.Windows.Forms.Button btDelet;
+        private System.Windows.Forms.ComboBox cbMaker;
+        private System.Windows.Forms.TextBox tbCategory;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip toolTip2;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem ファイルFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 新規入力ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem 終了XToolStripMenuItem;
     }
 }
 

@@ -19,7 +19,6 @@ namespace ListCollectionSample
         {
             InitializeComponent();
             dgvCarData.DataSource = _cars;
-
         }
 
         private void btAdd_Click(object sender, EventArgs e)
@@ -27,25 +26,50 @@ namespace ListCollectionSample
             Car car = new Car()
             {
                 Name = tbName.Text,
-                Maker = tbMaker.Text,
+                Maker = cbMaker.Text,
                 Category = tbCategory.Text,
                 carPic = pbImage.Image
             };
+            //メーカーをコンボボックスの入力候補に登録
+            setComboBoxMaker(cbMaker.Text);
 
+            if (tbName.Text == "") //(==)→中身の確認
+            {
+                MessageBox.Show("正しい値を入力してください。",
+                    "エラー",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            else
+            {
+                _cars.Insert(0, car); //リストの先頭(インデックス0)へ追加
+                dgvCarData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-            _cars.Insert(0, car); //リストの先頭(インデックス0)へ追加
-            dgvCarData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                inputItemAllClear();
 
-            inputItemAllClear();
-
+                initButton();
+                dgvCarData.ClearSelection(); //クリックしたときに選択されないようにする
+                dgvCarData.ClearSelection(); //選択行をクリア
+                
+            }
         }
 
         private void inputItemAllClear()
         {
-            tbName.Clear();
-            tbMaker.Clear();
+            tbName.Text = "";
+            cbMaker.Text = "";
             tbCategory.Clear();
             pbImage.Image = null;
+        }
+
+        //メーカーコンボボックスの入力候補登録
+        private void setComboBoxMaker(string maker)
+        {
+            if(!cbMaker.Items.Contains(maker)) //!←否定
+            {
+                //コンボボックスの候補に追加
+                cbMaker.Items.Add(maker);
+            }
         }
 
         private void btOpenImage_Click(object sender, EventArgs e)
@@ -71,7 +95,7 @@ namespace ListCollectionSample
             //BindingListのデータを取得する
             Car selectedCar = _cars[dgvCarData.CurrentRow.Index];
             tbName.Text = selectedCar.Name;
-            tbMaker.Text = selectedCar.Maker;
+            cbMaker.Text = selectedCar.Maker;
             tbCategory.Text = selectedCar.Category;
         }
 
@@ -87,7 +111,7 @@ namespace ListCollectionSample
             Car modify = new Car() //中の処理を変更
             {
                 Name = tbName.Text,
-                Maker = tbMaker.Text,
+                Maker = cbMaker.Text,
                 Category = tbCategory.Text,
                 carPic = pbImage.Image
             };
@@ -97,5 +121,39 @@ namespace ListCollectionSample
             inputItemAllClear();
 
         }
+
+        private void btDelet_Click(object sender, EventArgs e)
+        {
+            _cars.RemoveAt(dgvCarData.CurrentRow.Index);
+            initButton();
+        }
+        private void Form1_Load(object sender, EventArgs e) //Formの中で変更と削除を作る
+        {
+            initButton();
+
+        }
+        void initButton()
+        {
+            if (_cars.Count == 0)
+            {
+                btModify.Enabled = false; //初期状態では変更ボタンはマスク
+                btDelet.Enabled = false;
+            } else
+            {
+                btModify.Enabled = true;
+                btDelet.Enabled = true;
+            }
+        }
+
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void 新規入力ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            inputItemAllClear();
+        }
     }
+
 }
