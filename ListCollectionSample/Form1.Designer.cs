@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,13 +42,15 @@
             this.btDelet = new System.Windows.Forms.Button();
             this.cbMaker = new System.Windows.Forms.ComboBox();
             this.tbCategory = new System.Windows.Forms.TextBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.新規入力ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.終了XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btSave = new System.Windows.Forms.Button();
+            this.btRead = new System.Windows.Forms.Button();
+            this.sfdSaveData = new System.Windows.Forms.SaveFileDialog();
+            this.ofdOpenData = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -104,14 +105,14 @@
             this.dgvCarData.ReadOnly = true;
             this.dgvCarData.RowTemplate.Height = 21;
             this.dgvCarData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCarData.Size = new System.Drawing.Size(559, 186);
+            this.dgvCarData.Size = new System.Drawing.Size(559, 303);
             this.dgvCarData.TabIndex = 2;
             this.dgvCarData.Click += new System.EventHandler(this.dgvCarData_Click);
             // 
             // btAdd
             // 
             this.btAdd.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btAdd.Location = new System.Drawing.Point(581, 256);
+            this.btAdd.Location = new System.Drawing.Point(583, 256);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(97, 47);
             this.btAdd.TabIndex = 3;
@@ -142,7 +143,7 @@
             // btClearImage
             // 
             this.btClearImage.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btClearImage.Location = new System.Drawing.Point(582, 107);
+            this.btClearImage.Location = new System.Drawing.Point(581, 87);
             this.btClearImage.Name = "btClearImage";
             this.btClearImage.Size = new System.Drawing.Size(97, 51);
             this.btClearImage.TabIndex = 3;
@@ -157,7 +158,7 @@
             // btModify
             // 
             this.btModify.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btModify.Location = new System.Drawing.Point(583, 328);
+            this.btModify.Location = new System.Drawing.Point(584, 307);
             this.btModify.Name = "btModify";
             this.btModify.Size = new System.Drawing.Size(96, 46);
             this.btModify.TabIndex = 5;
@@ -168,7 +169,7 @@
             // btDelet
             // 
             this.btDelet.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btDelet.Location = new System.Drawing.Point(582, 397);
+            this.btDelet.Location = new System.Drawing.Point(583, 359);
             this.btDelet.Name = "btDelet";
             this.btDelet.Size = new System.Drawing.Size(97, 45);
             this.btDelet.TabIndex = 6;
@@ -237,11 +238,39 @@
             this.終了XToolStripMenuItem.Text = "終了(&X)";
             this.終了XToolStripMenuItem.Click += new System.EventHandler(this.終了XToolStripMenuItem_Click);
             // 
+            // btSave
+            // 
+            this.btSave.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btSave.Location = new System.Drawing.Point(584, 456);
+            this.btSave.Name = "btSave";
+            this.btSave.Size = new System.Drawing.Size(97, 48);
+            this.btSave.TabIndex = 9;
+            this.btSave.Text = "保存";
+            this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.Click += new System.EventHandler(this.btSave_Click);
+            // 
+            // btRead
+            // 
+            this.btRead.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btRead.Location = new System.Drawing.Point(584, 510);
+            this.btRead.Name = "btRead";
+            this.btRead.Size = new System.Drawing.Size(97, 49);
+            this.btRead.TabIndex = 10;
+            this.btRead.Text = "読込";
+            this.btRead.UseVisualStyleBackColor = true;
+            this.btRead.Click += new System.EventHandler(this.btRead_Click);
+            // 
+            // ofdOpenData
+            // 
+            this.ofdOpenData.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(708, 454);
+            this.ClientSize = new System.Drawing.Size(708, 572);
+            this.Controls.Add(this.btRead);
+            this.Controls.Add(this.btSave);
             this.Controls.Add(this.cbMaker);
             this.Controls.Add(this.btDelet);
             this.Controls.Add(this.btModify);
@@ -287,13 +316,15 @@
         private System.Windows.Forms.Button btDelet;
         private System.Windows.Forms.ComboBox cbMaker;
         private System.Windows.Forms.TextBox tbCategory;
-        private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ファイルFToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 新規入力ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem 終了XToolStripMenuItem;
+        private System.Windows.Forms.Button btSave;
+        private System.Windows.Forms.Button btRead;
+        private System.Windows.Forms.SaveFileDialog sfdSaveData;
+        private System.Windows.Forms.OpenFileDialog ofdOpenData;
     }
 }
 

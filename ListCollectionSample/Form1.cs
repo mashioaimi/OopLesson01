@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -39,8 +42,7 @@ namespace ListCollectionSample
                     "エラー",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-            }
-            else
+            } else
             {
                 _cars.Insert(0, car); //リストの先頭(インデックス0)へ追加
                 dgvCarData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -50,7 +52,7 @@ namespace ListCollectionSample
                 initButton();
                 dgvCarData.ClearSelection(); //クリックしたときに選択されないようにする
                 dgvCarData.ClearSelection(); //選択行をクリア
-                
+
             }
         }
 
@@ -65,7 +67,7 @@ namespace ListCollectionSample
         //メーカーコンボボックスの入力候補登録
         private void setComboBoxMaker(string maker)
         {
-            if(!cbMaker.Items.Contains(maker)) //!←否定
+            if (!cbMaker.Items.Contains(maker)) //!←否定
             {
                 //コンボボックスの候補に追加
                 cbMaker.Items.Add(maker);
@@ -154,6 +156,55 @@ namespace ListCollectionSample
         {
             inputItemAllClear();
         }
-    }
 
+        private void btSave_Click(object sender, EventArgs e)
+        {
+            if (sfdSaveData.ShowDialog() == DialogResult.OK)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                using (FileStream fs = new FileStream(sfdSaveData.FileName, FileMode.Create))
+                {
+                    try
+                    {
+                        //シリアル化して保存
+                        formatter.Serialize(fs, _cars);
+                    } catch (SerializationException se)
+                    {
+                        Console.WriteLine("Failed to serialize. Reason: " + se.Message);
+                        throw;
+                    }
+                }
+            }
+        }
+
+        private void btRead_Click(object sender, EventArgs e)
+        {
+            if (ofdOpenData.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream fs = new FileStream(ofdOpenData.FileName, FileMode.Open))
+                {
+                    try
+                    {
+                        BinaryFormatter formatter = new BinaryFormatter();
+                        //逆シリアル化して読み込む
+                        _cars = (BindingList<Car>)formatter.Deserialize(fs);
+                        //データグリッドビューに再設定
+                        dgvCarData.DataSource = _cars;
+                        //選択されている箇所を各コントロールへ表示
+                        dgvCarData_Click(sender, e);
+
+                    } catch (SerializationException se)
+                    {
+                        Console.WriteLine("Failed to deserialize. Reason: " + se.Message);
+                        throw;
+                    } finally
+                    {
+                        fs.Close();
+                    }
+
+                }
+            }
+        }
+    }
 }

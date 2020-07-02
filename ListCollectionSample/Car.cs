@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ListCollectionSample
 {
+    [Serializable]
     class Car
     {
         //車名
