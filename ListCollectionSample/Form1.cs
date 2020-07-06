@@ -159,8 +159,11 @@ namespace ListCollectionSample
 
         private void btSave_Click(object sender, EventArgs e)
         {
+            //セーブファイルダイアログを表示
             if (sfdSaveData.ShowDialog() == DialogResult.OK)
             {
+
+                //ファイルストリームを生成
                 BinaryFormatter formatter = new BinaryFormatter();
 
                 using (FileStream fs = new FileStream(sfdSaveData.FileName, FileMode.Create))
@@ -180,6 +183,7 @@ namespace ListCollectionSample
 
         private void btRead_Click(object sender, EventArgs e)
         {
+            //オープンファイルダイアログを表示
             if (ofdOpenData.ShowDialog() == DialogResult.OK)
             {
                 using (FileStream fs = new FileStream(ofdOpenData.FileName, FileMode.Open))
@@ -194,15 +198,12 @@ namespace ListCollectionSample
                         //選択されている箇所を各コントロールへ表示
                         dgvCarData_Click(sender, e);
 
-                    } catch (SerializationException se)
+                    } 
+                    catch (SerializationException se)
                     {
                         Console.WriteLine("Failed to deserialize. Reason: " + se.Message);
                         throw;
-                    } finally
-                    {
-                        fs.Close();
                     }
-
                 }
             }
         }

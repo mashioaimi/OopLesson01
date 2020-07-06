@@ -221,43 +221,45 @@
             // 新規入力ToolStripMenuItem
             // 
             this.新規入力ToolStripMenuItem.Name = "新規入力ToolStripMenuItem";
-            this.新規入力ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.新規入力ToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.新規入力ToolStripMenuItem.Text = "新規入力";
             this.新規入力ToolStripMenuItem.Click += new System.EventHandler(this.新規入力ToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(152, 6);
             // 
             // 終了XToolStripMenuItem
             // 
             this.終了XToolStripMenuItem.Name = "終了XToolStripMenuItem";
             this.終了XToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.終了XToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.終了XToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.終了XToolStripMenuItem.Text = "終了(&X)";
             this.終了XToolStripMenuItem.Click += new System.EventHandler(this.終了XToolStripMenuItem_Click);
             // 
             // btSave
             // 
+            this.btSave.BackColor = System.Drawing.Color.LightPink;
             this.btSave.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btSave.Location = new System.Drawing.Point(584, 456);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(97, 48);
             this.btSave.TabIndex = 9;
             this.btSave.Text = "保存";
-            this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.UseVisualStyleBackColor = false;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
             // btRead
             // 
+            this.btRead.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btRead.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btRead.Location = new System.Drawing.Point(584, 510);
             this.btRead.Name = "btRead";
             this.btRead.Size = new System.Drawing.Size(97, 49);
             this.btRead.TabIndex = 10;
             this.btRead.Text = "読込";
-            this.btRead.UseVisualStyleBackColor = true;
+            this.btRead.UseVisualStyleBackColor = false;
             this.btRead.Click += new System.EventHandler(this.btRead_Click);
             // 
             // ofdOpenData
